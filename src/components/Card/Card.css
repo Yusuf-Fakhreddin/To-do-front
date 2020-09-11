@@ -1,0 +1,46 @@
+.Card {
+  margin: 15px;
+  padding: 25px 10px;
+  border-radius: 5px;
+  position: relative;
+  /* min-width: 450px; */
+  /* display: table; */
+  background-color: var(--default-card);
+}
+
+.first {
+  background-color: var(--add-card);
+}
+
+.Card .add {
+  font-size: 6rem;
+  margin: 0;
+  padding: 0;
+  color: var(--add-btn);
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.desc-btn {
+  border: none;
+  padding: 5px;
+  background: none;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.check {
+  border: none;
+  color: var(--check);
+  background: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.title {
+  overflow: hidden;
+}

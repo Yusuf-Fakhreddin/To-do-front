@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Kite+One&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Kite One', sans-serif;
+}
+
+.dark-mode {
+  --light-color: #6161a7;
+  --background: #0d0d20;
+  --add-card: #242486;
+  --default-card: #171727;
+  --check: #bdd3c8;
+  --text-color: white;
+  --add-btn: #bdd3c8;
+  --error: white;
+}
+
+.light-mode {
+  --light-color: #6161a7;
+  --default-card: #eb4b54;
+  --add-card: white;
+  --background: #c88f8c;
+  --check: white;
+  --text-color: white;
+  --add-btn: #eb4b54;
+  --error: white;
+}
+
+.theme {
+  color: var(--text-color);
+  background-color: var(--background);
+  width: 100vw;
+  min-height: 100vh;
+  padding: 25px;
+}
+
+.App {
+  padding: 25px 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  transition: background-color 1s linear;
+}
+.container {
+  width: 80%;
+  max-width: 80%;
+  margin: 35px auto;
+}
+
+.grid {
+  display: grid;
+  margin: 0 20px;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}

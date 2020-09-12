@@ -10,7 +10,7 @@ const Toggler = (props) => {
           className='checkbox'
           id='chk'
         />
-        <label className='label' for='chk'>
+        <label className='label' htmlFor='chk'>
           <i className='fas fa-moon'></i>
           <i className='fas fa-sun'></i>
           <div className='ball'></div>

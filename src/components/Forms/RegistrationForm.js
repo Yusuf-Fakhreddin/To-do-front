@@ -11,6 +11,18 @@ function RegistrationForm() {
     confirmPassword: '',
   };
 
+  const validate = (values) => {
+    const errors = {};
+
+    if (!values.fullname) {
+      errors.fullname = 'Name is required';
+    } else if (/^[a-zA-Z]+$/.test(values.fullname)) {
+      errors.fullname = 'Please enter a proper full name';
+    }
+
+    return errors;
+  };
+
   const validationSchema = Yup.object({
     email: Yup.string().email('Invalid email format').required('Required'),
     password: Yup.string().required('Required'),
@@ -28,7 +40,8 @@ function RegistrationForm() {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={onSubmit}>
+        onSubmit={onSubmit}
+        validate={validate}>
         {(formik) => {
           return (
             <Form autoComplete='off'>
@@ -56,7 +69,7 @@ function RegistrationForm() {
                 label='Confirm Password'
                 name='confirmPassword'
               />
-              <button type='submit' disabled={!formik.isValid}>
+              <button type='submit' disabled={formik.dirty || !formik.isValid}>
                 Submit
               </button>
             </Form>

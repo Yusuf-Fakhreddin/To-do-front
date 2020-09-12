@@ -3,7 +3,7 @@ import './Card.css';
 const Card = (props) => {
   if (props.name === 'Add')
     return (
-      <div className='Card first'>
+      <div className='Card first' onClick={props.clicked}>
         <h1 className='add'>+</h1>
       </div>
     );

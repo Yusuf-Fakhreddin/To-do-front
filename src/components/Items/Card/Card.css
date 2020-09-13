@@ -5,6 +5,7 @@
   position: relative;
   /* min-width: 450px; */
   /* display: table; */
+
   background-color: var(--default-card);
 }
 
@@ -13,8 +14,7 @@
 }
 
 .Card .add {
-  font-size: 6rem;
-  margin: 0;
+  font-size: 3rem;
   padding: 0;
   color: var(--add-btn);
 }

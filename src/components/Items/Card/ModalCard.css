@@ -17,4 +17,9 @@
 .ModalCard h1,
 .ModalCard p {
   margin: 15px;
+  /* Truncate the text to the specific number of lines. */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 15;
+  overflow: hidden;
 }

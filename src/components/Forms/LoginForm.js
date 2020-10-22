@@ -1,45 +1,54 @@
-import React from 'react';
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
-import FormikControl from './FormikControl';
-import './Form.css';
+import React from "react";
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
+import FormikControl from "./Fields/FormikControl";
+import { login } from "../../services/userService";
+import "./Form.css";
 
-function LoginForm() {
+function LoginForm(props) {
   const initialValues = {
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   };
 
   const validationSchema = Yup.object({
-    email: Yup.string().email('Invalid email format').required('Required'),
-    password: Yup.string().required('Required'),
+    email: Yup.string().email("Invalid email format").required("Required"),
+    password: Yup.string().required("Required"),
   });
 
-  const onSubmit = (values) => {
-    console.log('Form data', values);
+  const onSubmit = async (values, { setFieldError }) => {
+    try {
+      await login(values);
+      window.location = "/";
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        setFieldError("email", error.response.data.error);
+      }
+    }
   };
   return (
-    <div className='form'>
+    <div className="form">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={onSubmit}>
+        onSubmit={onSubmit}
+      >
         {(formik) => {
           return (
-            <Form autoComplete='off'>
+            <Form autoComplete="off">
               <FormikControl
-                control='input'
-                type='email'
-                label='Email'
-                name='email'
+                control="input"
+                type="email"
+                label="Email"
+                name="email"
               />
               <FormikControl
-                control='input'
-                type='password'
-                label='Password'
-                name='password'
+                control="input"
+                type="password"
+                label="Password"
+                name="password"
               />
-              <button type='submit' disabled={!formik.isValid}>
+              <button type="submit" disabled={!formik.isValid}>
                 Submit
               </button>
             </Form>

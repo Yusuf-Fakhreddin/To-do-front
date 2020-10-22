@@ -1,0 +1,37 @@
+import http from "./httpService";
+import { apiUrl } from "../config.json";
+const apiEndpoint = apiUrl;
+
+export async function register(user) {
+  let result = http.post(apiEndpoint + "/auth/register", {
+    name: user.fullname,
+    email: user.email,
+    password: user.password,
+  });
+  let jwt = result.data.token;
+  localStorage.setItem("token", jwt);
+}
+
+export async function login(user) {
+  let result = await http.post(apiEndpoint + "/auth/login", {
+    email: user.email,
+    password: user.password,
+  });
+  let jwt = result.data.token;
+  localStorage.setItem("token", jwt);
+}
+
+export async function logout(user) {
+  localStorage.removeItem("token");
+}
+
+// only if the user was decoded into the token
+import jwtDecode from "jwt-decode";
+export function getCurrentUser() {
+  try {
+    const jwt = localStorage.getItem("token");
+    return jwtDecode(jwt);
+  } catch (error) {
+    return null;
+  }
+}

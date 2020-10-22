@@ -1,48 +1,51 @@
-import React from 'react';
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
-import FormikControl from './FormikControl';
-import './Form.css';
+import React, { useEffect, useRef } from "react";
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
+import FormikControl from "./Fields/FormikControl";
+import "./Form.css";
 
 function AddItem() {
   const initialValues = {
-    title: '',
-    description: '',
+    title: "",
+    description: "",
   };
 
   const validationSchema = Yup.object({
     title: Yup.string()
-      .min(2, 'Please use a reasonable title')
-      .required('Give it a title'),
+      .min(2, "Please use a reasonable title")
+      .max(25, "Title can not be more than 20 characters")
+      .required("Give it a title"),
     description: Yup.string()
-      .min(10, 'Write a reasonable description so you can get back to it')
-      .required('Required'),
+      .min(10, "Write a reasonable description so you can get back to it")
+      .required("Required"),
   });
 
   const onSubmit = (values) => {
-    console.log('Form data', values);
+    console.log("Form data", values);
   };
+
   return (
-    <div className='form'>
+    <div className="form">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={onSubmit}>
+        onSubmit={onSubmit}
+      >
         {(formik) => {
           return (
-            <Form autoComplete='off'>
+            <Form autoComplete="off" onFocus>
               <FormikControl
-                control='input'
-                type='text'
-                label='Title'
-                name='title'
+                control="input"
+                type="text"
+                label="Title"
+                name="title"
               />
               <FormikControl
-                control='textarea'
-                label='Description'
-                name='description'
+                control="textarea"
+                label="Description"
+                name="description"
               />
-              <button type='submit' disabled={!formik.isValid}>
+              <button type="submit" disabled={!formik.isValid}>
                 Submit
               </button>
             </Form>

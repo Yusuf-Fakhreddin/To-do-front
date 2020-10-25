@@ -7,10 +7,10 @@ import RegistrationForm from "./components/Forms/RegistrationForm";
 import Logout from "./components/Items/Logout";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/Items/Grid/Home";
-
+import { getCurrentUser } from "./services/userService.js";
 function App() {
   const [theme, setTheme] = useState("light-mode");
-
+  const [user, setUser] = useState(null);
   const toggleTheme = () => {
     setTheme((prevTheme) =>
       prevTheme === "dark-mode" ? "light-mode" : "dark-mode"
@@ -25,6 +25,10 @@ function App() {
       setTheme(savedTheme);
       console.log(savedTheme.toString());
     }
+
+    const user = getCurrentUser();
+    console.log(user);
+    setUser(user);
   }, []);
 
   return (
@@ -33,7 +37,7 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact>
-            <Home />
+            {!user ? <LoginForm /> : <Home user={user} />}
           </Route>
           <Route path="/register">
             <RegistrationForm />

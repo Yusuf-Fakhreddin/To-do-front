@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import FormikControl from "./Fields/FormikControl";
@@ -33,7 +33,7 @@ function AddItem() {
       >
         {(formik) => {
           return (
-            <Form autoComplete="off" onFocus>
+            <Form autoComplete="off">
               <FormikControl
                 control="input"
                 type="text"

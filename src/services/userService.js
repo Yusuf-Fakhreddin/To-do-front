@@ -1,4 +1,6 @@
 import http from "./httpService";
+import jwtDecode from "jwt-decode";
+
 import { apiUrl } from "../config.json";
 const apiEndpoint = apiUrl;
 
@@ -25,8 +27,13 @@ export async function logout(user) {
   localStorage.removeItem("token");
 }
 
+// for getting rid of Bi-directional dependencies
+export function getJwt() {
+  return localStorage.getItem("token");
+}
+http.setJwt(getJwt());
+
 // only if the user was decoded into the token
-import jwtDecode from "jwt-decode";
 export function getCurrentUser() {
   try {
     const jwt = localStorage.getItem("token");

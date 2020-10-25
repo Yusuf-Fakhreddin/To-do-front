@@ -1,5 +1,12 @@
 import axios from "axios";
 
+// whenever we make http request the token will be included
+// if the user is not logged in the token will be undefined
+// for getting rid of Bi-directional dependencies
+function setJwt(jwt) {
+  axios.defaults.headers.common = { Authorization: `Bearer ${jwt}` };
+}
+
 axios.interceptors.response.use(null, (error) => {
   const expectedError =
     error.response &&
@@ -19,4 +26,5 @@ export default {
   post: axios.post,
   put: axios.put,
   delete: axios.delete,
+  setJwt,
 };

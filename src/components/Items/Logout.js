@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { logout } from "../../services/userService";
 class Logout extends Component {
   componentDidMount() {
@@ -9,3 +9,5 @@ class Logout extends Component {
     return null;
   }
 }
+
+export default Logout;
